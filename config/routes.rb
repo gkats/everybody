@@ -5,6 +5,8 @@ Everybody::Application.routes.draw do
   end
 
   root :to => 'main#index'
+  
+  match '*path', :to => 'main#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
