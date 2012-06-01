@@ -5,7 +5,7 @@ window.Everybody = {
   Views: { },
   init: function() {
     new Everybody.Routers.Contacts();
-    Backbone.history.start();
+    Backbone.history.start({ pushState: true });
   }
 };
 
