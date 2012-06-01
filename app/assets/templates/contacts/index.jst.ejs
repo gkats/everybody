@@ -1,1 +1,5 @@
-<h2><%= contacts %></h2>
+<ul>
+  <% for (var i = 0; i < contacts.models.length; i++) { %>
+    <li><%= contacts.models[i].get('name') %></li>
+  <% } %>
+</ul>

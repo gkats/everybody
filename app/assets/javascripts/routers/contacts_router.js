@@ -4,8 +4,13 @@ Everybody.Routers.Contacts = Backbone.Router.extend({
     'contacts/:id': 'show'
   },
   
+  initialize: function() {
+    this.contacts = new Everybody.Collections.Contacts();
+    this.contacts.fetch();
+  },  
+  
   index: function() {
-    view = new Everybody.Views.ContactsIndex();
+    var view = new Everybody.Views.ContactsIndex({ collection: this.contacts });
     $('#contactsList').html(view.render().el);
   },
   
