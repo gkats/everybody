@@ -1,5 +1,8 @@
 Everybody::Application.routes.draw do
-  resources :contacts
+  
+  scope 'api' do
+    resources :contacts
+  end
 
   root :to => 'main#index'
 

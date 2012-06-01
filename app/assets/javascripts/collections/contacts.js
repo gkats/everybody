@@ -1,3 +1,3 @@
-Everybody.Collections.Contacts = Backbone.Collections.extend({
+Everybody.Collections.Contacts = Backbone.Collection.extend({
   url: '/api/contacts'
 });
