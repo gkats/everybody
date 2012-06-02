@@ -1,7 +1,7 @@
 Everybody.Routers.Contacts = Backbone.Router.extend({
   routes: {
     '': 'index',
-    'contacts/:id': 'show'
+    'contacts/:id/edit': 'edit'
   },
   
   initialize: function() {
@@ -11,10 +11,10 @@ Everybody.Routers.Contacts = Backbone.Router.extend({
   
   index: function() {
     var view = new Everybody.Views.ContactsIndex({ collection: this.contacts });
-    $('#contacts').html(view.render().el);
+    $('#content').html(view.render().el);
   },
   
-  show: function(id) {
+  edit: function(id) {
     alert('Contact ' + id);
   }
 });

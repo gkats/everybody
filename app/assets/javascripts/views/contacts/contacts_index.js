@@ -2,7 +2,8 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
   template: JST['contacts/index'],
   
   events: {
-    'submit #new_contact': 'createContact'
+    'submit #new_contact': 'createContact',
+    'click #add_contact a': 'showForm'
   },
   
   initialize: function() {
@@ -23,7 +24,7 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
   
   createContact: function(e) {
     e.preventDefault();
-    var attributes = { name: $('#new_contact_name').val() };
+    var attributes = { name: $('#name').val() };
     this.collection.create(attributes, {
       // set wait to true if there is no client-side validation
       //wait: true,
@@ -52,5 +53,9 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
         }
       }
     }
+  },
+  
+  showForm: function(e) {
+    $(this.el).find('#new_contact').slideDown();
   }
 });

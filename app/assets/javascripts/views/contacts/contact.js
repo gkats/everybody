@@ -3,7 +3,7 @@ Everybody.Views.Contact = Backbone.View.extend({
   tagName: 'li',
   
   events: {
-    'click': 'showContact'
+    'click': 'editContact'
   },
   
   render: function() {
@@ -11,7 +11,8 @@ Everybody.Views.Contact = Backbone.View.extend({
     return this;
   },
   
-  showContact: function(e) {
-    Backbone.history.navigate('contacts/' + this.model.get('id'), true);
+  editContact: function(e) {
+    Backbone.history.navigate('contacts/' + this.model.get('id') + '/edit', 
+      true);
   }
 });
