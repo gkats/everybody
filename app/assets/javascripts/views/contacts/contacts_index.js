@@ -35,10 +35,22 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
   },
   
   handleError: function(contact, response) {
-    if (response.status == 422) {
+    // Client side validation
+    if (!response.status) {
+      alert(response);
+    }
+    // Server side validation
+    else if (response.status == 422) {
       var errors = $.parseJSON(response.responseText).errors;
-      //TODO fixme
-      alert(errors[0]);
+      for (attribute in errors) {
+        var messages = errors[attribute];
+        for (var i = 0, len = messages.length; i < len; i++) {
+          message = messages[i];
+          attrName = "" + attribute;
+          alert(Everybody.Helpers.StringUtils.capitalize("" + attribute) 
+            + " " + message);
+        }
+      }
     }
   }
 });

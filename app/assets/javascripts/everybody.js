@@ -3,6 +3,7 @@ window.Everybody = {
   Collections: { },
   Routers: { },
   Views: { },
+  Helpers: { },
   init: function() {
     new Everybody.Routers.Contacts();
     Backbone.history.start({ pushState: true });
