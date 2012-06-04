@@ -3,7 +3,8 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
   
   events: {
     'submit #new_contact': 'createContact',
-    'click #add_contact a': 'showForm'
+    'click #add_contact a': 'showForm',
+    'click #new_contact_cancel': 'hideForm'
   },
   
   initialize: function() {
@@ -14,6 +15,7 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
   render: function() {
     $(this.el).html(this.template());
     this.collection.models.forEach(this.appendContact.bind(this));
+    this.createFilterOptions($(this.el).find('#filter select'));
     return this;
   },
   
@@ -57,5 +59,32 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
   
   showForm: function(e) {
     $(this.el).find('#new_contact').slideDown();
+  },
+  
+  hideForm: function(e) {
+    $('#new_contact')[0].reset();
+    $('#new_contact').slideUp();
+  },
+  
+  createFilterOptions: function(select) {
+    var option;
+      
+    _.each(this.getGroups(), function(item) {
+      if (item) {
+        option = $('<option/>', {
+          value: item,
+          text: item
+        });
+        $(select).append(option);
+      }
+    });
+  },
+  
+  getGroups: function() {
+    return _.uniq(this.collection.pluck('group'), false, function(group) {
+      if (group) {
+        return group.toLowerCase();
+      }
+    });
   }
 });
