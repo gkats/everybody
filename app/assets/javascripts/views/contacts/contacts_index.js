@@ -81,6 +81,11 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
       }
     });
     
+    $(select).append($('<option/>', {
+      value: 'none',
+      text: 'No group'
+    }));
+    
     this.filterGroup = this.filterGroup || 'all';
     $(select).val(this.filterGroup);
   },
