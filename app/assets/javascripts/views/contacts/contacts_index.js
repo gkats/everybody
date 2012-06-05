@@ -4,12 +4,14 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
   events: {
     'submit #new_contact': 'createContact',
     'click #add_contact a': 'showForm',
-    'click #new_contact_cancel': 'hideForm'
+    'click #new_contact_cancel': 'hideForm',
+    'change #filter select': 'setFilter'
   },
   
   initialize: function() {
     this.collection.on('reset', this.render, this);
-    this.collection.on('add', this.appendContact, this); 
+    this.collection.on('add', this.appendContact, this);
+    this.on('change:filterGroup', this.filterByGroup, this); 
   },
   
   render: function() {
@@ -78,13 +80,39 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
         $(select).append(option);
       }
     });
+    
+    this.filterGroup = this.filterGroup || 'all';
+    $(select).val(this.filterGroup);
   },
   
   getGroups: function() {
-    return _.uniq(this.collection.pluck('group'), false, function(group) {
-      if (group) {
-        return group.toLowerCase();
+    return _.uniq(_.pluck($('#content').data('contacts'), 'group'), 
+      false, function(group) {
+        if (group) {
+          return group.toLowerCase();
+        }
       }
-    });
+    );
+  },
+  
+  setFilter: function(e) {
+    this.filterGroup = e.currentTarget.value;
+    this.trigger('change:filterGroup');
+  },
+  
+  filterByGroup: function() {
+    if (this.filterGroup === 'all') {
+      this.collection.reset($('#content').data('contacts'));
+      Backbone.history.navigate('', true);
+    }
+    else {
+      this.collection.reset($('#content').data('contacts'), { silent: true });
+      var filterGroup = this.filterGroup,
+        filtered = _.filter(this.collection.models, function(item) {
+          return item.get('group') === filterGroup; 
+        });
+      this.collection.reset(filtered);
+      Backbone.history.navigate('contacts/group/' + filterGroup, true);
+    }
   }
 });

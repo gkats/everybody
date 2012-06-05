@@ -1,1 +1,1 @@
-<%= content_tag 'div', '', id: 'content', contacts: Contact.all.to_json %>
+<%= content_tag 'div', '', id: 'content', data: { contacts: Contact.all } %>
