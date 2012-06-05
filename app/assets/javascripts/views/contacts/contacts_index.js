@@ -28,12 +28,16 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
   
   createContact: function(e) {
     e.preventDefault();
-    var attributes = { name: $('#name').val() };
+    var attributes = { 
+      name: $(this.el).find('#name').val(),
+      group: $(this.el).find('#group').val() 
+    };
     this.collection.create(attributes, {
       // set wait to true if there is no client-side validation
       //wait: true,
       success: function() {
         $('#new_contact')[0].reset();
+        $('#new_contact').slideUp();
       },
       error: this.handleError
     });
@@ -80,11 +84,6 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
         $(select).append(option);
       }
     });
-    
-    $(select).append($('<option/>', {
-      value: 'none',
-      text: 'No group'
-    }));
     
     this.filterGroup = this.filterGroup || 'all';
     $(select).val(this.filterGroup);
