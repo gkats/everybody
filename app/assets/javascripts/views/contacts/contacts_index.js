@@ -5,19 +5,20 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
     'submit #new_contact': 'createContact',
     'click #add_contact a': 'showForm',
     'click #new_contact_cancel': 'hideForm',
-    'change #filter select': 'setFilter'
+    'change #filter select': 'setFilter',
   },
   
   initialize: function() {
     this.collection.on('reset', this.render, this);
     this.collection.on('add', this.appendContact, this);
-    this.on('change:filterGroup', this.filterByGroup, this); 
+    Everybody.vent.on('change:contacts', this.createFilterOptions, this);
+    Everybody.vent.on('change:filterGroup', this.filterByGroup, this);
   },
   
   render: function() {
     $(this.el).html(this.template());
     this.collection.models.forEach(this.appendContact.bind(this));
-    this.createFilterOptions($(this.el).find('#filter select'));
+    this.createFilterOptions();
     return this;
   },
   
@@ -38,6 +39,7 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
       success: function() {
         $('#new_contact')[0].reset();
         $('#new_contact').slideUp();
+        Everybody.vent.trigger('change:contacts');
       },
       error: this.handleError
     });
@@ -62,7 +64,7 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
       }
     }
   },
-  
+
   showForm: function(e) {
     $(this.el).find('#new_contact').slideDown();
   },
@@ -72,9 +74,11 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
     $('#new_contact').slideUp();
   },
   
-  createFilterOptions: function(select) {
-    var option;
+  createFilterOptions: function() {
+    var option,
+      select = $(this.el).find('#filter select');
       
+    $(select).html('<option>all</option>');
     _.each(this.getGroups(), function(item) {
       if (item) {
         option = $('<option/>', {
@@ -90,8 +94,7 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
   },
   
   getGroups: function() {
-    return _.uniq(_.pluck($('#content').data('contacts'), 'group'), 
-      false, function(group) {
+    return _.uniq(this.collection.pluck('group'), false, function(group) {
         if (group) {
           return group.toLowerCase();
         }
@@ -101,16 +104,15 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
   
   setFilter: function(e) {
     this.filterGroup = e.currentTarget.value;
-    this.trigger('change:filterGroup');
+    Everybody.vent.trigger('change:filterGroup');
   },
   
   filterByGroup: function() {
     if (this.filterGroup === 'all') {
-      this.collection.reset($('#content').data('contacts'));
+      this.collection.fetch();
       Backbone.history.navigate('', true);
     }
     else {
-      this.collection.reset($('#content').data('contacts'), { silent: true });
       var filterGroup = this.filterGroup,
         filtered = _.filter(this.collection.models, function(item) {
           return item.get('group') === filterGroup; 

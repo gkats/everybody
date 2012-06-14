@@ -7,18 +7,18 @@ Everybody.Routers.Contacts = Backbone.Router.extend({
   
   initialize: function() {
     this.contacts = new Everybody.Collections.Contacts();
-    this.contacts.reset($('#content').data('contacts'));
+    this.contacts.fetch();
   },  
   
   index: function() {
-    this.indexView = new Everybody.Views.ContactsIndex({ 
-      collection: this.contacts 
+    this.indexView = new Everybody.Views.ContactsIndex({
+      collection: this.contacts
     });
     $('#content').html(this.indexView.render().el);
   },
   
   edit: function(id) {
-    alert('Contact ' + id);
+    alert('Edit Contact ' + id);
   },
   
   group: function(group) {

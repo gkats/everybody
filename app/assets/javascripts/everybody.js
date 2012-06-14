@@ -5,6 +5,7 @@ window.Everybody = {
   Views: { },
   Helpers: { },
   init: function() {
+    this.vent = _.extend({}, Backbone.Events);
     new Everybody.Routers.Contacts();
     Backbone.history.start({ pushState: true });
   }

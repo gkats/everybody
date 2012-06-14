@@ -1,6 +1,8 @@
 Everybody.Models.Contact = Backbone.Model.extend({
   defaults: {
-    group: 'none'
+    group: 'none',
+    address: '',
+    notes: ''
   },
   
   validate: function(attrs) {
