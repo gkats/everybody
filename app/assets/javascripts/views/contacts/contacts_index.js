@@ -110,7 +110,7 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
   filterByGroup: function() {
     if (this.filterGroup === 'all') {
       this.collection.fetch();
-      Backbone.history.navigate('', true);
+      Backbone.history.navigate('/', true);
     }
     else {
       var filterGroup = this.filterGroup,

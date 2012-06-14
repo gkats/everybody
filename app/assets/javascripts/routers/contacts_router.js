@@ -18,7 +18,12 @@ Everybody.Routers.Contacts = Backbone.Router.extend({
   },
   
   edit: function(id) {
-    alert('Edit Contact ' + id);
+    this.editView = new Everybody.Views.ContactEdit({
+      model: this.contacts.find(function(item) {
+        return item.get('id') == id;
+      })
+    });
+    $('#content').html(this.editView.render().el);
   },
   
   group: function(group) {
@@ -26,7 +31,7 @@ Everybody.Routers.Contacts = Backbone.Router.extend({
       this.index();
     }
     this.indexView.filterGroup = group;
-    this.indexView.trigger('change:filterGroup');
     this.indexView.$el.find('#filter select').val(group);
+    Everybody.vent.trigger('change:filterGroup');
   }
 });
