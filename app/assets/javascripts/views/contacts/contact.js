@@ -18,8 +18,15 @@ Everybody.Views.Contact = Backbone.View.extend({
   },
   
   deleteContact: function(e) {
-    this.model.destroy();
-    this.remove();
-    Everybody.vent.trigger('change:contacts');
+    var self = this;
+    
+    this.model.destroy({
+      success: function() {
+        Everybody.Helpers.NotificationHandler.notify('Contact successfully deleted');
+        self.remove();
+        Everybody.vent.trigger('change:contacts');
+      },
+      error: Everybody.Helpers.ErrorHandler.handleError
+    });
   }
 });

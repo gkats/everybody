@@ -39,30 +39,11 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
       success: function() {
         $('#new_contact')[0].reset();
         $('#new_contact').slideUp();
+        Everybody.Helpers.NotificationHandler.notify('Contact successfully created');
         Everybody.vent.trigger('change:contacts');
       },
-      error: this.handleError
+      error: Everybody.Helpers.ErrorHandler.handleError
     });
-  },
-  
-  handleError: function(contact, response) {
-    // Client side validation
-    if (!response.status) {
-      alert(response);
-    }
-    // Server side validation
-    else if (response.status == 422) {
-      var errors = $.parseJSON(response.responseText).errors;
-      for (attribute in errors) {
-        var messages = errors[attribute];
-        for (var i = 0, len = messages.length; i < len; i++) {
-          message = messages[i];
-          attrName = "" + attribute;
-          alert(Everybody.Helpers.StringUtils.capitalize("" + attribute) 
-            + " " + message);
-        }
-      }
-    }
   },
 
   showForm: function(e) {
