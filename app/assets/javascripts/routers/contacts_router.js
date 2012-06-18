@@ -7,7 +7,7 @@ Everybody.Routers.Contacts = Backbone.Router.extend({
   
   initialize: function() {
     this.contacts = new Everybody.Collections.Contacts();
-    this.contacts.fetch();
+    this.contacts.reset($('#content').data('contacts'));
   },  
   
   index: function() {
