@@ -9,7 +9,7 @@ describe('Contact view', function() {
 	
 	it('should provide edit and delete buttons', function() {
 		view.render();
-		expect(view.$el.find('button.edit')).toBeDefined();
-		expect(view.$el.find('button.delete')).toBeDefined();
+		expect(view.$el.find('button.edit').attr('class')).toEqual('edit');
+		expect(view.$el.find('button.delete').attr('class')).toEqual('delete');
 	});
  })
