@@ -20,7 +20,7 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
     //this.createFilterOptions();
     return this;
   },
-  
+
   appendContact: function(contact) {
     var view = new Everybody.Views.Contact({ model: contact });
     this.$('#contacts_list').append(view.render().el);
