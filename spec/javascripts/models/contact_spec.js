@@ -6,14 +6,14 @@ describe('Contact', function() {
 	});
 	
 	it('requires a name', function() {
-		// expect(contact.isValid()).toBe(false);
-		// contact.set('name', 'joe');
-		// expect(contact.isValid()).toBe(true);
+//		 expect(contact.isValid()).toBe(false);
+//		 contact.set('name', 'joe');
+//		 expect(contact.isValid()).toBe(true);
 		var eventSpy = sinon.spy();
 		contact.bind('error', eventSpy);
 		contact.save({ name: '' });
 		expect(eventSpy).toHaveBeenCalledOnce();
-		expect(eventSpy).toHaveBeenCalledWith(contact, 'Name can"t be blank')
+		expect(eventSpy).toHaveBeenCalledWith(contact, 'Name can\'t be blank')
 	});
 	
 	describe('url', function() {
