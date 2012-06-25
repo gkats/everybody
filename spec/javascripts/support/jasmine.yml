@@ -12,6 +12,8 @@
 #
 src_files:
   - assets/application.js
+  - /vendor/assets/javascripts/sinon.js
+  - /vendor/assets/javascripts/jasmine-sinon.js
 
 # stylesheets
 #
