@@ -1,5 +1,4 @@
 describe('Contacts requests', function() {
-	// before all
 
 	it('should have initialized router', function() {
 		expect(Everybody.Routers.Contacts).toBeDefined();
@@ -11,7 +10,7 @@ describe('Contacts requests', function() {
 		});
 		
 		it('no contacts message if no contact exists', function() {
-
+			
 		});
 	});
 	

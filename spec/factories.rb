@@ -11,4 +11,9 @@ FactoryGirl.define do
     type 'Mobile'
     number '6979999999'
   end
+  
+  factory :invalid_contact, class: Contact do
+    name ''
+    group 'friends'
+  end
 end
