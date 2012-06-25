@@ -6,9 +6,9 @@ describe('Contacts index view', function() {
 		])
 	});
 	
-	it('should render add link', function() {
+	it('should render add button', function() {
 		view.render();
-		expect(view.$el.find('a.add').html()).toContain('Add');
+		expect(view.$el.find('.add').html()).toContain('Add');
 	});
 	
 	it('should show add form after clicking on add link', function() {
