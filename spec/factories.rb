@@ -1,10 +1,9 @@
 FactoryGirl.define do
-  factory :contact do
-    name 'joe'
+ factory :contact do
+    name 'John Doe'
     group 'family'
-    notes 'Full of notes'
-    
-    phone
+    address '5th Avenue, New York'
+    notes 'Some notes for this contact'
   end
   
   factory :phone do
