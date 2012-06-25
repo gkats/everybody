@@ -3,8 +3,7 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
   
   events: {
     'submit #new_contact': 'createContact',
-    'click #add_contact a': 'showForm',
-    'click #new_contact_cancel': 'hideForm',
+    'click #add_contact': 'newContact'
     //'change #filter select': 'setFilter'
   },
   
@@ -44,14 +43,10 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
       error: Everybody.Helpers.ErrorHandler.handleError
     });
   },
-
-  showForm: function(e) {
-    $(this.el).find('#new_contact').slideDown();
-  },
   
-  hideForm: function(e) {
-    $('#new_contact')[0].reset();
-    $('#new_contact').slideUp();
+  newContact: function(e) {
+    e.preventDefault();
+    Backbone.history.navigate('contacts/new', true);
   },
   
   createFilterOptions: function() {

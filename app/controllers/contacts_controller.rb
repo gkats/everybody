@@ -6,6 +6,11 @@ class ContactsController < ApplicationController
     respond_with Contact.all
   end
   
+  # GET /api/contacts/new.json
+  def new
+    respond_with Contact.new
+  end
+  
   # POST /api/contacts.json
   def create
     respond_with Contact.create(params[:contact])

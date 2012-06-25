@@ -1,5 +1,6 @@
 Everybody.Views.ContactEdit = Backbone.View.extend({
   template: JST['contacts/edit'],
+  form: JST['contacts/form'],
   
   events: {
     'submit form': 'updateContact'
@@ -10,7 +11,8 @@ Everybody.Views.ContactEdit = Backbone.View.extend({
   },
   
   render: function() {
-    $(this.el).html(this.template({ contact: this.model }));
+    $(this.el).html(this.template());
+    $(this.el).find('#contact_form').html(this.form({ contact: this.model }));
     return this;
   },
   

@@ -25,6 +25,12 @@ describe ContactsController do
     Contact.count.should eq count + 1 
   end
   
+  it 'GET new' do
+    get :new, format: :json
+    response.status.should eq 200
+    binding.pry
+  end
+  
   it 'GET edit' do
     expect { get :edit, id: 0, format: 'json' }.to raise_error
     
