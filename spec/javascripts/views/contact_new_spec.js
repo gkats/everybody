@@ -12,4 +12,8 @@ describe('New contact view', function() {
 	  expect(view.$el.find('form.contact-form').attr('class')).toEqual('contact-form');
 	  expect(view.$el.find('form.contact-form #name').val()).toEqual('');
 	});
+	
+	it('should create a new contact when submitting the form', function() {
+		expect(true).toBeFalsy();
+	});
 });

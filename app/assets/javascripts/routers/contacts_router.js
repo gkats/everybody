@@ -20,7 +20,8 @@ Everybody.Routers.Contacts = Backbone.Router.extend({
   
   new: function() {
     this.newView = new Everybody.Views.ContactNew({
-      model: new Everybody.Models.Contact()
+      model: new Everybody.Models.Contact(),
+			collection: this.contacts
     });
     $('#content').html(this.newView.render().el);
   },

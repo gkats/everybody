@@ -2,7 +2,6 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
   template: JST['contacts/index'],
   
   events: {
-    'submit #new_contact': 'createContact',
     'click #add_contact': 'newContact'
     //'change #filter select': 'setFilter'
   },
@@ -15,7 +14,13 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
   
   render: function() {
     $(this.el).html(this.template());
-    this.collection.models.forEach(this.appendContact.bind(this));
+		if (this.collection.length > 0) {
+			this.$el.find('.contacts-empty').addClass('hide');
+			this.collection.models.forEach(this.appendContact.bind(this));
+		}
+		else {
+			this.$el.find('.contacts-empty').removeClass('hide');
+		}
     //this.createFilterOptions();
     return this;
   },
@@ -23,25 +28,6 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
   appendContact: function(contact) {
     var view = new Everybody.Views.Contact({ model: contact });
     this.$('#contacts_list').append(view.render().el);
-  },
-  
-  createContact: function(e) {
-    e.preventDefault();
-    var attributes = { 
-      name: $(this.el).find('#name').val(),
-      group: $(this.el).find('#group').val() 
-    };
-    this.collection.create(attributes, {
-      // set wait to true if there is no client-side validation
-      //wait: true,
-      success: function() {
-        $('#new_contact')[0].reset();
-        $('#new_contact').slideUp();
-        Everybody.Helpers.NotificationHandler.notify('Contact successfully created');
-        Everybody.vent.trigger('change:contacts');
-      },
-      error: Everybody.Helpers.ErrorHandler.handleError
-    });
   },
   
   newContact: function(e) {
