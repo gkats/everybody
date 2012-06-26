@@ -30,6 +30,8 @@ RSpec.configure do |config|
   # rspec-rails.
   config.infer_base_class_for_anonymous_controllers = false
   
+  config.filter_run :focus => true
+  
   # Benefit from factory_girl's syntax helpers
   config.include FactoryGirl::Syntax::Methods
 end
