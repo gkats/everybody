@@ -28,7 +28,9 @@ describe ContactsController do
   it 'GET new' do
     get :new, format: :json
     response.status.should eq 200
-    binding.pry
+    response.body.split(',').each do |attribute|
+      attribute.should include 'null'
+    end
   end
   
   it 'GET edit' do
