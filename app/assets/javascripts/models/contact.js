@@ -6,6 +6,7 @@ Everybody.Models.Contact = Backbone.Model.extend({
   },
 
 	initialize: function() {
+	  var phones;
 		this.phones = new Everybody.Collections.Phones();
 	},
   
@@ -15,13 +16,11 @@ Everybody.Models.Contact = Backbone.Model.extend({
     };
   },
 
-	phones_attributes: function() {
-		return this.phones.map(function(p) {
-			return p.toJSON();
-		});
-	},
-	
 	toJSON: function() {
-		return _.extend(_.clone(this.attributes), { phones_attributes: this.phones_attributes() });
+		return _.extend(_.clone(this.attributes), { 
+		  phones_attributes: this.phones.map(function(p) {
+			  return p.toJSON();
+		  }) 
+		});
 	}
 });
