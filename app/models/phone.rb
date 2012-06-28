@@ -3,7 +3,7 @@ class Phone < ActiveRecord::Base
 
   attr_accessible :number, :type, :contact_id
   
-  validates_presence_of :number, :type, :contact_id
+  validates_presence_of :number, :type
   validates_format_of :number, with: /\d/
   
   TYPES = ['Mobile', 'Home', 'Work', 'Other']
