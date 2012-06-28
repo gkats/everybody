@@ -19,11 +19,22 @@ Everybody.Views.ContactNew = Backbone.View.extend({
   
   createContact: function(e) {
     e.preventDefault();
-    var attributes = { 
+		var contact, phone;
+    
+		contact = new Everybody.Models.Contact ({ 
       name: $(this.el).find('#name').val(),
       group: $(this.el).find('#group').val() 
-    };
-    this.collection.create(attributes, {
+    });
+
+		_.each(this.$el.find('#phone_fields div'), function(phoneFields) {
+			contact.phones.add(new Everybody.Models.Phone({
+				kind: $(phoneFields).find('.phone-type').val(),
+				number: $(phoneFields).find('.phone-number').val() 
+			}));
+		});
+	  this.collection.add(contact);
+	
+    contact.save({}, {
       // set wait to true if there is no client-side validation
       //wait: true,
       success: function() {
