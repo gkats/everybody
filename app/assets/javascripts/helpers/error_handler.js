@@ -1,5 +1,5 @@
 Everybody.Helpers.ErrorHandler = {
-  handleError: function(response) {
+  handleError: function(model, response) {
     // Client side validation
     if (!response.status) {
       Everybody.Helpers.NotificationHandler.notify(response);
