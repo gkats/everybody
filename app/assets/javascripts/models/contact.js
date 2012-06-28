@@ -8,6 +8,7 @@ Everybody.Models.Contact = Backbone.Model.extend({
 	initialize: function() {
 	  var phones;
 		this.phones = new Everybody.Collections.Phones();
+		this.phones.url = '/api/contacts/' + this.id + '/phones';
 	},
   
   validate: function(attrs) {
@@ -19,7 +20,10 @@ Everybody.Models.Contact = Backbone.Model.extend({
 	toJSON: function() {
 		return _.extend(_.clone(this.attributes), { 
 		  phones_attributes: this.phones.map(function(p) {
-			  return p.toJSON();
+		    var phone = p.toJSON();
+		    delete phone['created_at'];
+		    delete phone['updated_at']
+			  return phone;
 		  }) 
 		});
 	}
