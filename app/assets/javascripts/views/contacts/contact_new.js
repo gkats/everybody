@@ -12,9 +12,8 @@ Everybody.Views.ContactNew = Backbone.View.extend({
   
   render: function() {
     this.$el.html(this.template());
-    this.$el.find('#contact_form').html(this.form({
-      contact: this.model
-    }));
+    this.$el.find('#contact_form').html(this.form({ contact: this.model }));
+		this.renderPhone();
     return this;
   },
   
@@ -34,5 +33,10 @@ Everybody.Views.ContactNew = Backbone.View.extend({
       },
       error: Everybody.Helpers.ErrorHandler.handleError
     });
-  }
+  },
+
+	renderPhone: function() {
+		var phoneView = new Everybody.Views.Phone({ model: new Everybody.Models.Phone() });
+		this.$el.find('#phone_fields').append(phoneView.render().el);
+	}
 });
