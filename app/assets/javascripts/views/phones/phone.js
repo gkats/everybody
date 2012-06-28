@@ -1,5 +1,5 @@
 Everybody.Views.Phone = Backbone.View.extend({
-	template: JST['phones/fields']
+	template: JST['phones/fields'],
 	
 	render: function() {
 		this.$el.html(this.template({ phone: this.model }));
