@@ -17,12 +17,11 @@ Everybody.Models.Contact = Backbone.Model.extend({
 
 	phones_attributes: function() {
 		return this.phones.map(function(p) {
-			return { type: p.get('type'), number: p.get('number') };
+			return p.toJSON();
 		});
 	},
 	
 	toJSON: function() {
-		json = { contact: _.clone(this.attributes) };
-		return _.extend(json.contact, { phones_attributes: this.phones_attributes() });
+		return _.extend(_.clone(this.attributes), { phones_attributes: this.phones_attributes() });
 	}
 });
