@@ -4,7 +4,7 @@ Everybody.Helpers.ModelValidator = {
   },
   
   isNumeric: function(value) {
-    return value && !value.search(/\D/) > 0;
+    return value && value.search(/\D/) < 0;
   },
   
   messageForBlankValue: function(attrName) {
@@ -12,6 +12,6 @@ Everybody.Helpers.ModelValidator = {
   },
   
   messageForNumericInput: function(attrName) {
-    return Everybody.Helpers.StringUtils.capitalize(attrName) + ' must be a number';
+    return Everybody.Helpers.StringUtils.capitalize(attrName) + ' must contain only digits';
   }
 };
