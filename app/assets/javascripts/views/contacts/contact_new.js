@@ -16,10 +16,10 @@ Everybody.Views.ContactNew = Backbone.View.extend({
 		this.renderPhone();
     return this;
   },
-  
+
   createContact: function(e) {
     e.preventDefault();
-		var contact, phone;
+		var contact;
     
 		contact = new Everybody.Models.Contact ({ 
       name: $(this.el).find('#name').val(),
@@ -35,8 +35,7 @@ Everybody.Views.ContactNew = Backbone.View.extend({
 	  this.collection.add(contact);
 	
     contact.save({}, {
-      // set wait to true if there is no client-side validation
-      //wait: true,
+      wait: true,
       success: function() {
         Everybody.Helpers.NotificationHandler.notify('Contact successfully created');
         Everybody.vent.trigger('change:contacts');
