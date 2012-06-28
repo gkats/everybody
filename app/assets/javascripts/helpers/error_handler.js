@@ -14,7 +14,7 @@ Everybody.Helpers.ErrorHandler = {
           message = messages[i];
           attrName = "" + attribute;
           notices += Everybody.Helpers.StringUtils.capitalize(
-            "" + attribute) + " " + message + " ";
+            attrName.substr(attrName.indexOf('.') + 1)) + " " + message + " ";
         }
       }
       Everybody.Helpers.NotificationHandler.notify(notices);
