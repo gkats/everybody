@@ -4,6 +4,8 @@ Everybody.Models.Phone = Backbone.Model.extend({
     number: ''
   },
 
+	kinds: ['Mobile', 'Home', 'Work', 'Other'],
+
   validate: function(attrs) {
     if (Everybody.Helpers.ModelValidator.isBlank(attrs.number)) {
       return Everybody.Helpers.ModelValidator.messageForBlankValue('number');
@@ -11,10 +13,8 @@ Everybody.Models.Phone = Backbone.Model.extend({
     if (!Everybody.Helpers.ModelValidator.isNumeric(attrs.number)) {
       return Everybody.Helpers.ModelValidator.messageForNumericInput('number');
     }
-		if (!_.include(Everybody.Models.Phone.kinds, attrs.kind)) {
-			return Everybody.Helpers.NotificationHandler.notify('Invalid phone type');
+		if (!Everybody.Helpers.ModelValidator.isIncluded(this.kinds, attrs.kind)) {
+			return Everybody.Helpers.ModelValidator.messageForInclusion('phone type');
 		}
   }
 });
-
-Everybody.Models.Phone.kinds = ['Mobile', 'Home', 'Work', 'Other'];
