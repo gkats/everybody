@@ -29,10 +29,14 @@ Everybody.Views.ContactNew = Backbone.View.extend({
     });
 
 		_.each(this.$el.find('#phone_fields div'), function(phoneFields) {
-			contact.phones.add(new Everybody.Models.Phone({
-				kind: $(phoneFields).find('.phone-type').val(),
-				number: $(phoneFields).find('.phone-number').val() 
-			}));
+			var number;
+			number = $(phoneFields).find('.phone-number').val();
+			if (number && number.replace(/\s*/, '').length > 0) {
+			  contact.phones.add(new Everybody.Models.Phone({
+				  kind: $(phoneFields).find('.phone-type').val(),
+				  number: number
+			  }));
+			}
 		});
 	  this.collection.add(contact);
 	

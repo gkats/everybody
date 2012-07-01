@@ -37,6 +37,7 @@ Everybody.Views.ContactEdit = Backbone.View.extend({
   },
   
   updateContact: function(e) {
+    var number;
     e.preventDefault();
     
     this.model.set('name', $(this.el).find('#name').val());
@@ -50,10 +51,13 @@ Everybody.Views.ContactEdit = Backbone.View.extend({
         this.model.phones.at(i).set('number', $(phoneFieldDivs[i]).find('.phone-number').val());
       }
       else {
-        this.model.phones.add(new Everybody.Models.Phone({
-          kind: $(phoneFieldDivs[i]).find('.phone-type').val(),
-          number: $(phoneFieldDivs[i]).find('.phone-number').val()
-        }));
+        number = $(phoneFieldDivs[i]).find('.phone-number').val();
+        if (number && number.replace(/\s*/, '').length > 0) {
+          this.model.phones.add(new Everybody.Models.Phone({
+            kind: $(phoneFieldDivs[i]).find('.phone-type').val(),
+            number: number
+          }));
+        }
       }
     }
     
