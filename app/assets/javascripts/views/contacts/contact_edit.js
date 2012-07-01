@@ -22,10 +22,18 @@ Everybody.Views.ContactEdit = Backbone.View.extend({
     var phoneView,
       self = this;
     
-    this.model.phones.each(function(phone) {
-      phoneView = new Everybody.Views.Phone({ model: phone });
+    if (this.model.phones.length > 0) {
+      this.model.phones.each(function(phone) {
+        phoneView = new Everybody.Views.Phone({ model: phone });
+        self.$el.find('#phone_fields').append(phoneView.render().el);
+      });
+    }
+    else {
+      phoneView = new Everybody.Views.Phone({ 
+        model: new Everybody.Models.Phone() 
+      });
       self.$el.find('#phone_fields').append(phoneView.render().el);
-    });
+    }
   },
   
   updateContact: function(e) {
@@ -41,8 +49,8 @@ Everybody.Views.ContactEdit = Backbone.View.extend({
       }
       else {
         this.model.phones.add(new Everybody.Models.Phone({
-          kind: $(phoneFields).find('.phone-type'),
-          number: $(phoneFields).find('.phone-number')
+          kind: $(phoneFieldDivs[i]).find('.phone-type').val(),
+          number: $(phoneFieldDivs[i]).find('.phone-number').val()
         }));
       }
     }
