@@ -4,6 +4,10 @@
   <label for="group">Group</label>
   <input type="text" id="group" value="<%= contact.get('group') %>"/>
   <div id="phone_fields"/>
+  <label for="address">Address</label>
+  <input type="text" id="address" value="<%= contact.get('address') %>"/>
+  <label for="notes">Notes</label>
+  <textarea id="notes"><%= contact.get('notes') %></textarea>
   <input type="submit" value="Save"/>
   <a href="/" id="back">Back</a>
 </form>

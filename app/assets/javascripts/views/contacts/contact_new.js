@@ -23,7 +23,9 @@ Everybody.Views.ContactNew = Backbone.View.extend({
     
 		contact = new Everybody.Models.Contact ({ 
       name: $(this.el).find('#name').val(),
-      group: $(this.el).find('#group').val() 
+      group: $(this.el).find('#group').val(),
+      address: $(this.el).find('#address').val(),
+      notes: $(this.el).find('#notes').val() 
     });
 
 		_.each(this.$el.find('#phone_fields div'), function(phoneFields) {

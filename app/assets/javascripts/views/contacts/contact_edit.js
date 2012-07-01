@@ -41,6 +41,8 @@ Everybody.Views.ContactEdit = Backbone.View.extend({
     
     this.model.set('name', $(this.el).find('#name').val());
     this.model.set('group', $(this.el).find('#group').val());
+    this.model.set('address', $(this.el).find('#address').val());
+    this.model.set('notes', $(this.el).find('#notes').val());
     var phoneFieldDivs = this.$el.find('#phone_fields div');
     for (var i = 0; i <  phoneFieldDivs.length; i++) {
       if (i < this.model.phones.length) {
