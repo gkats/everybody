@@ -3,8 +3,6 @@ class Phone < ActiveRecord::Base
 
   attr_accessible :number, :kind, :contact_id
   
-  validates_presence_of :number, :kind
   validates_format_of :number, with: /\d/
-  
-  KINDS = ['Mobile', 'Home', 'Work', 'Other']
+  validates_inclusion_of :kind, in: %w(Mobile Home Work Other)
 end
