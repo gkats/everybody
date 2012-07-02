@@ -1,7 +1,7 @@
 Everybody::Application.routes.draw do
   
   scope 'api' do
-    resources :contacts do
+    resources :contacts, except: :show do
       resources :phones, only: :index
       resources :emails, only: :index
     end
