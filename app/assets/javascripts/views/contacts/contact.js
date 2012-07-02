@@ -13,8 +13,7 @@ Everybody.Views.Contact = Backbone.View.extend({
   },
   
   editContact: function(e) {
-    Backbone.history.navigate('contacts/' + this.model.get('id') + '/edit', 
-      true);
+    Backbone.history.navigate('contacts/' + this.model.get('id') + '/edit', true);
   },
   
   deleteContact: function(e) {
