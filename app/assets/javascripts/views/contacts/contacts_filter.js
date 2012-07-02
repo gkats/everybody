@@ -15,7 +15,7 @@ Everybody.Views.ContactsFilter = Backbone.View.extend({
     var select;
     select = this.$el.find('select');
     $(select).html('<option>all</option>');
-    _.each(_.sortBy(_.flatten(this.options), function(item) {
+    _.each(_.flatten(this.options), function(item) {
       if (item) {
         $(select).append($('<option/>', {
           value: item,
