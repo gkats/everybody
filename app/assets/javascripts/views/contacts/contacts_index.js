@@ -45,8 +45,8 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
   },
   
   setFilter: function(e) {
-    this.filterGroup = e.currentTarget.value;
-    Everybody.vent.trigger('change:filterGroup');
+//    this.filterGroup = e.currentTarget.value;
+//    Everybody.vent.trigger('change:filterGroup');
   },
   
   filterByGroup: function() {
