@@ -5,7 +5,7 @@
   <input type="text" id="group" value="<%= contact.get('group') %>"/>
   <div id="phone_fields"/>
   <label for="address">Address</label>
-  <input type="text" id="address" value="<%= contact.get('address') %>"/>
+  <textarea id="address"><%= contact.get('address') %></textarea>
   <label for="notes">Notes</label>
   <textarea id="notes"><%= contact.get('notes') %></textarea>
   <input type="submit" value="Save"/>
