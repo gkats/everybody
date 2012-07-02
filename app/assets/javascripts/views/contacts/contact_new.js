@@ -44,8 +44,8 @@ Everybody.Views.ContactNew = Backbone.View.extend({
       wait: true,
       success: function() {
         Everybody.Helpers.NotificationHandler.notify('Contact successfully created');
+        Backbone.history.navigate('/', true);
         Everybody.vent.trigger('change:contacts');
-				Backbone.history.navigate('/', true);
       },
       error: Everybody.Helpers.ErrorHandler.handleError
     });

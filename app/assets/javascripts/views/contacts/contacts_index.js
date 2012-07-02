@@ -7,9 +7,11 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
   },
   
   initialize: function() {
-		this.filterView = new Everybody.Views.ContactsFilter({ options: this.getGroups() });
+		this.filterView = new Everybody.Views.ContactsFilter({
+		  options: this.getGroups() 
+		});
     this.collection.on('add', this.appendContact, this);
-    //Everybody.vent.on('change:contacts', this.createFilterOptions, this);
+    Everybody.vent.on('change:contacts', this.updateFilterViewGroups, this);
     //Everybody.vent.on('change:filterGroup', this.filterByGroup, this);
   },
   
@@ -18,11 +20,11 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
 		if (this.collection.length > 0) {
 			this.$el.find('.contacts-empty').addClass('hide');
 			this.collection.models.forEach(this.appendContact.bind(this));
-			this.$el.find('#filter').html(this.filterView.render().el);
 		}
 		else {
 			this.$el.find('.contacts-empty').removeClass('hide');
 		}
+		this.$el.find('#filter').html(this.filterView.render().el);
     return this;
   },
 
@@ -42,6 +44,11 @@ Everybody.Views.ContactsIndex = Backbone.View.extend({
         return group.toLowerCase();
       }
     });
+  },
+  
+  updateFilterViewGroups: function() {
+    this.filterView.options = this.getGroups();
+    Everybody.vent.trigger('change:filter');
   },
   
   setFilter: function(e) {
