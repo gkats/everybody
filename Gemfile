@@ -23,4 +23,5 @@ end
 group :test, :development do
   gem 'factory_girl_rails', '~> 3.0'
   gem 'rspec-rails', '~> 2.0'
+  gem 'jasmine-headless-webkit'
 end

@@ -1,0 +1,1 @@
+class Everybody.Views.ContactView extends Backbone.View
