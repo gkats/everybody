@@ -13,3 +13,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore hidden files and folders
+.DS_Store
+.jhw-cache
