@@ -6,6 +6,8 @@ gem 'sqlite3'
 
 gem 'jquery-rails'
 
+gem 'ejs'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -23,5 +25,5 @@ end
 group :test, :development do
   gem 'factory_girl_rails', '~> 3.0'
   gem 'rspec-rails', '~> 2.0'
-  gem 'jasmine-headless-webkit'
+  gem 'jasminerice'
 end
