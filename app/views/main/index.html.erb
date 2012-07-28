@@ -1,1 +1,7 @@
-<div id="contacts"></div>
+<%= content_tag 'div', '', id: 'contacts', data: { contacts: Contact.all } %>
+
+<script type="text/javascript">
+  $(function () {
+    Everybody.initialize($('#contacts').data());
+  });
+</script>

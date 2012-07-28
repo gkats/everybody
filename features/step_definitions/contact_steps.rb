@@ -3,6 +3,5 @@ When /^I go to the list of contacts$/ do
 end
 
 Then /^there should be (\d+) contacts$/ do |number|
-  page.all('#contacts_list li').length.should eq number
+  page.all('#contacts_list li').length.should eq number.to_i
 end
-

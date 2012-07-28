@@ -19,10 +19,13 @@ end
 group :test do
   gem 'cucumber-rails', require: false
   gem 'capybara-webkit'
+  gem 'shoulda-matchers'
 end
 
 group :test, :development do
   gem 'factory_girl_rails', '~> 3.0'
   gem 'rspec-rails', '~> 2.0'
   gem 'jasminerice'
+  gem 'pry-rails'
+  gem 'database_cleaner'
 end
