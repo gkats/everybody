@@ -5,9 +5,11 @@ root.Everybody =
   Collections: { }
   Views: { }
   Routers: { }
-  initialize: ->
-    new Everybody.Routers.ContactsRouter()
-    Backbone.history.start({ pushState: true });
 
-#$(document).ready ->
-#  Everybody.initialize()
+  initialize: (data) ->
+    @contacts = new Everybody.Collections.Contacts(data.contacts)
+    new Everybody.Routers.Contacts(collection: @contacts)
+
+    unless (Backbone.history.started)
+      Backbone.history.start({ pushState: true })
+      Backbone.history.started = true
