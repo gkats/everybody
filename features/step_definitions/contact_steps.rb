@@ -11,10 +11,17 @@ Then /^I should( not)? see a (.+) message$/ do |negation, message_class|
   negation ? msg.should_not(be_visible) : msg.should(be_visible)
 end
 
-Then /^I should see (.+\/?.+) buttons for each contact$/ do |labels|
+Then /^I should see (.+\/?.+) links for each contact$/ do |labels|
   page.all('#contacts_list li').each do |li|
     labels.split('/').each do |label|
       li.text.should match label
     end
+  end
+end
+
+Then /^I should see the new contact form$/ do
+  page.should have_selector('.contact-form')
+  page.all('.contact-form input').each do |input|
+    input.text.should be_empty
   end
 end

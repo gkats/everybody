@@ -14,12 +14,12 @@ Feature: List contacts
     When I go to the list of contacts
     Then I should not see a contacts-empty message
     And there should be 2 contacts
-    And I should see Edit/Delete buttons for each contact
+    And I should see Edit/Delete links for each contact
 
   Scenario: Link to add new contact
     When I go to the list of contacts
-    And I follow the add new button
-    Then I should see a new contact form
+    And I follow the Add new link
+    Then I should see the new contact form
 
   Scenario: Ability to edit contact
     Given I have 1 contact
