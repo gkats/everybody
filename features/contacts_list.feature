@@ -1,3 +1,4 @@
+@javascript
 Feature: List contacts
   In order to keep track of my contacts
   As a user
