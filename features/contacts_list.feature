@@ -7,15 +7,22 @@ Feature: List contacts
   Scenario: Empty contacts list
     Given I have 0 contacts
     When I go to the list of contacts
-    Then I should see an empty message
+    Then I should see a contacts-empty message
 
   Scenario: Contacts List
     Given I have 2 contacts
     When I go to the list of contacts
-    Then there should be 2 contacts
-    And I should see edit/delete buttons for each contact
+    Then I should not see a contacts-empty message
+    And there should be 2 contacts
+    And I should see Edit/Delete buttons for each contact
 
   Scenario: Link to add new contact
     When I go to the list of contacts
     And I follow the add new button
     Then I should see a new contact form
+
+  Scenario: Ability to edit contact
+    Given I have 1 contact
+    When I go to the list of contacts
+    And I follow the Edit button
+    Then I should see a contact form

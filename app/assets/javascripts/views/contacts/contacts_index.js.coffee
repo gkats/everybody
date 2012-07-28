@@ -3,7 +3,9 @@ class Everybody.Views.ContactsIndex extends Support.CompositeView
 
   render: ->
     @$el.html(@template())
-    @collection.each(@appendContact)
+    if @collection.length
+      @$el.find('.contacts-empty').hide()
+      @collection.each(@appendContact)
     this
 
   appendContact: (contact) =>
