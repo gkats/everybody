@@ -1,4 +1,4 @@
-class Everybody.Views.ContactItem extends Backbone.View
+class Everybody.Views.ContactItem extends Support.CompositeView
   template: JST['contacts/item']
 
   tagName: 'li'

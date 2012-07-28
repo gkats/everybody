@@ -1,4 +1,4 @@
-class Everybody.Views.ContactsIndex extends Backbone.View
+class Everybody.Views.ContactsIndex extends Support.CompositeView
   template: JST['contacts/index']
 
   render: ->
