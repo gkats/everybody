@@ -1,8 +1,8 @@
 FactoryGirl.define do
-  factory :contact, class: Contact do
+  factory :contact do
     sequence :name do |n| "Contact #{n}" end
     group 'family'
-    address 'Elm Street'
-    notes 'Just a friend'
+    address 'Fake Street'
+    notes 'Some notes'
   end
 end
