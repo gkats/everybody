@@ -14,8 +14,8 @@
 ActiveRecord::Schema.define(:version => 20120704203406) do
 
   create_table "contacts", :force => true do |t|
-    t.string   "name",       :null => false
-    t.string   "group",      :null => false
+    t.string   "name"
+    t.string   "group"
     t.text     "address"
     t.text     "notes"
     t.datetime "created_at", :null => false
