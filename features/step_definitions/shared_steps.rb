@@ -1,5 +1,5 @@
-Given /^I have (\d+) (.+)s$/ do |number, model|
-  create_list(model, number.to_i)
+Given /^I have (\d+) (.+)$/ do |number, model|
+  create_list(model.singularize, number.to_i)
 end
 
 When /^I follow the (.+) link$/ do |link|

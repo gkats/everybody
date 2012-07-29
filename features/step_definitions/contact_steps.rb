@@ -19,9 +19,13 @@ Then /^I should see (.+\/?.+) links for each contact$/ do |labels|
   end
 end
 
-Then /^I should see the new contact form$/ do
+Then /^I should see the (new|edit) contact form$/ do |action|
   page.should have_selector('.contact-form')
   page.all('.contact-form input').each do |input|
-    input.text.should be_empty
+    if action == 'edit' || input[:name] == 'group' || input[:type] == 'submit'
+      input.value.should_not be_empty
+    else
+      input.value.should be_empty
+    end
   end
 end

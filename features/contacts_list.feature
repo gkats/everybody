@@ -24,5 +24,5 @@ Feature: List contacts
   Scenario: Ability to edit contact
     Given I have 1 contact
     When I go to the list of contacts
-    And I follow the Edit button
-    Then I should see a contact form
+    And I follow the Edit link
+    Then I should see the edit contact form

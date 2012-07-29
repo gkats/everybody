@@ -5,4 +5,8 @@ class Everybody.Views.ContactItem extends Support.CompositeView
 
   render: ->
     @$el.html(@template(contact: @model))
+    @$('a.contact-edit').attr('href', @contactUrl())
     this
+
+  contactUrl: ->
+    "/contacts/#{@model.get('id')}/edit"
