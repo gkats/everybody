@@ -1,7 +1,5 @@
 root = exports ? this
 
-root.Support = {}
-
 root.Everybody =
   Models: { }
   Collections: { }
