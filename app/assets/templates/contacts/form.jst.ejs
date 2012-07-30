@@ -1,7 +1,11 @@
 <form class="contact-form">
   <label for="name">Name</label>
   <input name="name" value="<%= contact.escape('name') %>">
-  <label for="name">Name</label>
+  <label for="name">Group</label>
   <input name="group" value="<%= contact.escape('group') %>">
+  <label for="address">Address</label>
+  <textarea name="address"><%= contact.escape('address') %></textarea>
+  <label for="notes">Notes</label>
+  <textarea name="notes"><%= contact.escape('notes') %></textarea>
   <input type="submit" value="Save"/>
 </form>

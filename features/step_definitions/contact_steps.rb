@@ -2,7 +2,11 @@ When /^I go to the list of contacts$/ do
   visit root_path
 end
 
-Then /^there should be (\d+) contacts$/ do |number|
+Given /^I go to the new contact page$/ do
+  visit '/contacts/new'
+end
+
+Then /^there should be (\d+) contacts?$/ do |number|
   page.all('#contacts_list li').length.should eq number.to_i
 end
 
@@ -28,4 +32,8 @@ Then /^I should see the (new|edit) contact form$/ do |action|
       input.value.should be_empty
     end
   end
+end
+
+Then /^I should see the list of contacts$/ do
+  page.should have_selector('#contacts_list')
 end

@@ -1,3 +1,4 @@
+@javascript
 Feature: Add contacts
   In order to store all my contacts
   As a user
@@ -8,9 +9,11 @@ Feature: Add contacts
     And I go to the new contact page
 
   Scenario: Add new contact
-    When I fill in the new contact form with a valid contact
-    And save my changes
-    Then I should be at the list of contacts
+    When I fill in
+    | Name          | Group  | Address               | Notes |
+    | Homer Simpson | family | 742 Evergreen Terrace |       |
+    And I click Save
+    Then I should see the list of contacts
     And there should be 1 contact
     And there should be a success message
 

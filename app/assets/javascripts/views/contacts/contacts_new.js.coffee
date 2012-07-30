@@ -11,6 +11,6 @@ class Everybody.Views.ContactsNew extends Support.CompositeView
     @$el.html(@template())
 
   renderContactForm: ->
-    form = new Everybody.Views.ContactForm(model: @model)
+    form = new Everybody.Views.ContactForm(model: @model, collection: @collection)
     container = @$('#new_contact')
     @renderChildInto(form, container)

@@ -7,6 +7,7 @@ describe ContactsController do
 
   it 'index should return all contacts' do
     get 'index', format: :json
+    response.status.should eq 200
     JSON.parse(response.body).length.should eq 2
   end
 end

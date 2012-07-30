@@ -13,7 +13,7 @@ class Everybody.Routers.Contacts extends Support.SwappingRouter
     @swap(view)
 
   newContact: ->
-    view = new Everybody.Views.ContactsNew()
+    view = new Everybody.Views.ContactsNew(collection: @collection)
     @swap(view)
 
   edit: (id) ->

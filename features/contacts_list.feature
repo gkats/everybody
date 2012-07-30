@@ -18,11 +18,11 @@ Feature: List contacts
 
   Scenario: Link to add new contact
     When I go to the list of contacts
-    And I follow the Add new link
+    And I click Add new
     Then I should see the new contact form
 
   Scenario: Ability to edit contact
     Given I have 1 contact
     When I go to the list of contacts
-    And I follow the Edit link
+    And I click Edit
     Then I should see the edit contact form
