@@ -4,4 +4,8 @@ class ContactsController < ApplicationController
   def index
     respond_with Contact.all
   end
+
+  def create
+    respond_with Contact.create(params[:contact])
+  end
 end
