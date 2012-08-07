@@ -1,3 +1,4 @@
+@javascript
 Feature: Edit contacts
   In order to make changes to my contacts' data
   As a user

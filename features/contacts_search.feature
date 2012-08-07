@@ -1,3 +1,4 @@
+@javascript
 Feature: Search contacts
   In order to be able to find a contact faster
   As a user

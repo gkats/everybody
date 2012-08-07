@@ -1,3 +1,4 @@
+@javascript
 Feature: Filter contacts
   In order to view only a subset of relevant contacts
   As a user
