@@ -10,7 +10,7 @@ Then /^there should be (\d+) contacts?$/ do |number|
   page.all('#contacts_list li').length.should eq number.to_i
 end
 
-Then /^I should( not)? see a (.+) message$/ do |negation, message_class|
+Then /^I should( not)? see an? (.+) message$/ do |negation, message_class|
   msg = page.find(".#{message_class}")
   negation ? msg.should_not(be_visible) : msg.should(be_visible)
 end
