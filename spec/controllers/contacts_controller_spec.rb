@@ -24,4 +24,11 @@ describe ContactsController do
     end.should change(Contact, :count).by(1)
     response.status.should eq 201
   end
+
+  it 'DELETE destroy' do
+    lambda do
+      delete :destroy, { id: Contact.first.id, format: :json }
+    end.should change(Contact, :count).by(-1)
+    response.status.should eq 204
+  end
 end

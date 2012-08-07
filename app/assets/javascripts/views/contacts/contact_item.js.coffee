@@ -3,10 +3,20 @@ class Everybody.Views.ContactItem extends Support.CompositeView
 
   tagName: 'li'
 
+  events:
+    'click a.contact-delete': 'removeContact'
+
   render: ->
     @$el.html(@template(contact: @model))
-    @$('a.contact-edit').attr('href', @contactUrl())
+    @$('a.contact-edit').attr('href', @contactEditUrl())
     this
 
-  contactUrl: ->
+  contactEditUrl: ->
     "/contacts/#{@model.get('id')}/edit"
+
+  removeContact: ->
+    @model.destroy(
+      wait: true
+      success: =>
+        @leave()
+    )
