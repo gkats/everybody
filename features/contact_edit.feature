@@ -5,25 +5,30 @@ Feature: Edit contacts
   I want to be able to edit a contact
 
   Background:
-    Given I have 1 contact with name 'John Doe'
-    And I go to the edit contact page
+    Given I have 1 contact
+    And I go to the edit contact page for contact 1
 
   Scenario: Edit contact
-    When I change the contact's name to 'Homer Simpson'
-    And I save my changes
-    Then I should go to the list of contacts
+    When I fill in
+    | Name          |
+    | Homer Simpson |
+    And I click Save
+    Then I should see the list of contacts
     And I should see a success message
-    And I should see Homer Simpson
+    And there should be Homer Simpson
 
   Scenario: Fail to edit contact
-    When I change the contact's name to ''
-    And I save my changes
-    Then I should be at the edit contact page
+    When I fill in
+    | Name          |
+    |               |
+    And I click Save
+    Then I should see the edit contact form
     And I should see an error message
-    And contact's name should not be empty
 
   Scenario: Cancel contact editing
-    When I change the contact's name to 'Homer Simpson'
-    And I cancel my changes
-    Then I should go to the list of contacts
-    And I should not see Homer Simpson
+    When I fill in
+    | Name          |
+    | Homer Simpson |
+    And I click Cancel
+    Then I should see the list of contacts
+    And there should not be Homer Simpson

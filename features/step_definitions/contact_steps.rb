@@ -6,6 +6,10 @@ Given /^I go to the new contact page$/ do
   visit '/contacts/new'
 end
 
+Given /^I go to the edit contact page for contact (\d+)$/ do |id|
+  visit "/contacts/#{id}/edit"
+end
+
 Then /^there should be (\d+) contacts?$/ do |number|
   page.all('#contacts_list li').length.should eq number.to_i
 end

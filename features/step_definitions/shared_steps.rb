@@ -18,3 +18,7 @@ end
 When /^I click (.+)$/ do |link|
   click_link_or_button link
 end
+
+Then /^there should( not)? be (.+)$/ do |negation, content|
+  negation ? page.should_not(have_content(content)) : page.should(have_content(content))
+end
