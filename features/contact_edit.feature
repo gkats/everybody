@@ -15,7 +15,7 @@ Feature: Edit contacts
     And I click Save
     Then I should see the list of contacts
     And I should see a success message
-    And there should be Homer Simpson
+    And page should have content Homer Simpson
 
   Scenario: Fail to edit contact
     When I fill in
@@ -31,4 +31,4 @@ Feature: Edit contacts
     | Homer Simpson |
     And I click Cancel
     Then I should see the list of contacts
-    And there should not be Homer Simpson
+    And page should not have content Homer Simpson
