@@ -22,7 +22,7 @@ Feature: Edit contacts
     | Name          |
     |               |
     And I click Save
-    Then I should see the edit contact form
+    Then I should see the contact form
     And I should see an error message
 
   Scenario: Cancel contact editing

@@ -11,12 +11,14 @@ class Everybody.Views.ContactForm extends Support.CompositeView
 
   save: (e) ->
     e.preventDefault()
-    setModelAttributes.call(this)
-    @model.save({ }, {
-      wait: true
-      success: => saved.call(this)
-      error: =>
-    })
+    if setModelAttributes.call(this)
+      @model.save({ }, {
+        wait: true
+        success: => saved.call(this)
+        error: =>
+      })
+    else
+      # error
     false
 
   setModelAttributes = ->
@@ -28,5 +30,5 @@ class Everybody.Views.ContactForm extends Support.CompositeView
     )
 
   saved = ->
-    @collection.add(@model)
+    @collection.add(@model) if @collection
     Backbone.history.navigate('/', true)

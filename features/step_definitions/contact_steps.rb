@@ -27,15 +27,8 @@ Then /^I should see (.+\/?.+) links for each contact$/ do |labels|
   end
 end
 
-Then /^I should see the (new|edit) contact form$/ do |action|
+Then /^I should see the contact form$/ do
   page.should have_selector('.contact-form')
-  page.all('.contact-form input').each do |input|
-    if action == 'edit' || input[:name] == 'group' || input[:type] == 'submit'
-      input.value.should_not be_empty
-    else
-      input.value.should be_empty
-    end
-  end
 end
 
 Then /^I should see the list of contacts$/ do

@@ -9,6 +9,10 @@ class ContactsController < ApplicationController
     respond_with Contact.create(params[:contact])
   end
 
+  def update
+    respond_with Contact.update(params[:id], params[:contact])
+  end
+
   def destroy
     respond_with Contact.destroy(params[:id])
   end

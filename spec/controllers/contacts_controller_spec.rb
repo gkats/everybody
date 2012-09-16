@@ -25,6 +25,16 @@ describe ContactsController do
     response.status.should eq 201
   end
 
+  it 'PUT update failure' do
+    put :update, { id: 1, contact: { name: '' }, format: :json }
+    response.status.should eq 422
+  end
+
+  it 'PUT update success' do
+    put :update, { id: 1, contact: { name: 'Homer Simpson' }, format: :json }
+    response.status.should eq 204
+  end
+
   it 'DELETE destroy' do
     lambda do
       delete :destroy, { id: Contact.first.id, format: :json }

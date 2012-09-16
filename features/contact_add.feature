@@ -22,7 +22,7 @@ Feature: Add contacts
     | Name | Group  | Address               | Notes |
     |      | family | 742 Evergreen Terrace |       |
     And I click Save
-    Then I should see the new contact form
+    Then I should see the contact form
     And I should see an error message
 
   Scenario: Canceling new contact
