@@ -15,6 +15,14 @@ When /^I fill in$/ do |table|
   end
 end
 
+When /^I filter by$/ do |table|
+  table.hashes.each do |option|
+    option.each do |key, value|
+      page.find("#filters select[name=#{key.downcase}]").set(value)
+    end
+  end
+end
+
 When /^I click (.+)$/ do |link|
   click_link_or_button link
 end

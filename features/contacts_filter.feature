@@ -5,16 +5,22 @@ Feature: Filter contacts
   I should be able to filter contacts
 
   Background:
-    When I have 1 contact with name 'Homer Simpson' and group 'family'
-    And I have 1 contact with name 'Lisa Simpson' and group 'family'
-    And I have 1 contact with name 'Ned Flanders' and group 'neighbor'
+    Given The following contacts exist:
+    | Name          | Group    |
+    | Homer Simpson | family   |
+    | Lisa Simpson  | family   |
+    | Ned Flanders  | neighbor |
     And I go to the list of contacts
-    Then I should see 3 contacts
+    Then there should be 3 contacts
 
   Scenario: Filter contacts
-    When I select 'family' as a filter
-    Then I should be at the list of contacts
-    And I should see 2 contacts
-    When I select 'all' as a filter
-    Then I should be at the list of contacts
-    And I should see 3 contacts
+    When I filter by
+    | group  |
+    | family |
+    Then I should see the list of contacts
+    And there should be 2 contacts
+    When I filter by
+    | group |
+    | all   |
+    Then I should see the list of contacts
+    And there should be 3 contacts
