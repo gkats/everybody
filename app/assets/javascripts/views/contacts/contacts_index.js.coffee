@@ -1,23 +1,19 @@
 class Everybody.Views.ContactsIndex extends Support.CompositeView
   template: JST['contacts/index']
 
-  events:
-    'change #filters select': 'filter'
-
   render: ->
-    @$el.html(@template())
-    if @collection.length
-      @$('.contacts-empty').hide()
-      @$('#filters select[name=group]').append($('<option>', text: 'all', value: 'all'))
-      for group in _.uniq(@collection.map((model) -> model.escape('group')))
-        @$('#filters select[name=group]').append($('<option>', text: group, value: group))
-
-      @collection.each(@appendContact)
+    @renderLayout()
+    @renderContacts()
+    @renderFilters()
     this
 
-  appendContact: (contact) =>
-    view = new Everybody.Views.ContactItem(model: contact)
-    @$('#contacts_list').append(view.render().el)
+  renderLayout: ->
+    @$el.html(@template())
 
-  filter: ->
-    @collection.byGroup(@$('#filters select[name=group]').val())
+  renderContacts: ->
+    list = new Everybody.Views.ContactsList(collection: @collection)
+    @renderChildInto(list, @$('#contacts_list'))
+
+  renderFilters: ->
+    filters = new Everybody.Views.ContactsFilters(collection: @collection)
+    @renderChildInto(filters, @$('#filters'))
