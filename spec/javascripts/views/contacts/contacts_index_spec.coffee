@@ -1,14 +1,11 @@
 describe 'Contacts Index View', ->
+  beforeEach ->
+    contacts = new Backbone.Collection([{ group: 'family' }, { group: 'friends' }])
+    view = new Everybody.Views.ContactsIndex(collection: contacts)
+    @$el = $(view.render().el)
+
   it 'renders a list', ->
-    contacts = new Everybody.Collections.Contacts()
-    contacts.reset([{ name: 'Homer Simpson' }, { name: 'Lisa Simpson' }])
-    view = new Everybody.Views.ContactsIndex({ collection: contacts })
-    $el = $(view.render().el)
-    expect($el.find('#contacts_list li')).toBeVisible()
+    expect(@$el.find('#contacts_list li').size()).toEqual(2)
 
   it 'renders filters', ->
-    contacts = new Everybody.Collections.Contacts()
-    contacts.reset([{ group: 'family' }, { group: 'friends' }])
-    view = new Everybody.Views.ContactsIndex(contacts)
-    $el = $(view.render().el)
-    expect($el.find('#filters select option').size()).toEqual(3)
+    expect(@$el.find('#filters select[name=group] option').size()).toEqual(3)

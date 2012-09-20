@@ -2,6 +2,7 @@ class Everybody.Views.ContactsList extends Support.CompositeView
   template: JST['contacts/list']
 
   render: ->
+    @$el.html(@template())
     if @collection.length
       @$('.contacts-empty').hide()
       @collection.each(@appendContact)
@@ -9,4 +10,4 @@ class Everybody.Views.ContactsList extends Support.CompositeView
 
   appendContact: (contact) =>
     view = new Everybody.Views.ContactItem(model: contact)
-    @$('#contacts_list ul').append(view.render().el)
+    @$('ul.contacts-list').append(view.render().el)
