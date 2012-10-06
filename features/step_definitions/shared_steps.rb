@@ -18,7 +18,9 @@ end
 When /^I filter by$/ do |table|
   table.hashes.each do |option|
     option.each do |key, value|
-      page.find("#filters select[name=#{key.downcase}]").set(value)
+      filter = page.find("#filters select[name=#{key.downcase}]")
+      filter.set(value)
+      filter.trigger('change')
     end
   end
 end
