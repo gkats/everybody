@@ -11,3 +11,7 @@ class Everybody.Views.ContactsList extends Support.CompositeView
   appendContact: (contact) =>
     view = new Everybody.Views.ContactItem(model: contact)
     @$('ul.contacts-list').append(view.render().el)
+
+  rerender: (data) ->
+    @collection = data.collection
+    @render()
